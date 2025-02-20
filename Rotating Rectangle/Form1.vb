@@ -53,8 +53,6 @@ Public Class Form1
 
     Private Sub RotatePoints(points As PointF(), angleInRads As Single, center As PointF)
 
-        'Dim transformedPoints As PointF() = New PointF(points.Length - 1) {}
-
         For i As Integer = 0 To points.Length - 1
 
             Dim x As Single = points(i).X * Cos(angleInRads) - points(i).Y * Sin(angleInRads)
