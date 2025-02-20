@@ -1,6 +1,7 @@
 ﻿Imports System.Math
 
 Public Class Form1
+
     Private angle As Single = 0
     Private timer As Timer
 
@@ -18,8 +19,6 @@ Public Class Form1
 
     Dim transformedPoints As PointF() = New PointF(RectPoints.Length - 1) {}
 
-
-    'RotatingRectangle
     Public Sub New()
         InitializeComponent()
 
@@ -45,9 +44,12 @@ Public Class Form1
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
         MyBase.OnPaint(e)
-        FillRectangle(e.Graphics)
-    End Sub
 
+        e.Graphics.SmoothingMode = Drawing2D.SmoothingMode.HighQuality
+
+        e.Graphics.FillPolygon(Brushes.Black, transformedPoints)
+
+    End Sub
 
     Private Sub RotatePoints(points As PointF(), angleInRads As Single, center As PointF)
 
@@ -61,40 +63,6 @@ Public Class Form1
             transformedPoints(i) = New PointF(x + center.X, y + center.Y)
 
         Next
-
-    End Sub
-
-
-
-
-
-    Private Sub FillRectangle(g As Graphics)
-        'Dim width As Integer = 200
-        'Dim height As Integer = 100
-        'Dim halfWidth As Integer = width / 2
-        'Dim halfHeight As Integer = height / 2
-
-        'Dim points As PointF() = {
-        '    New PointF(-halfWidth, -halfHeight),
-        '    New PointF(halfWidth, -halfHeight),
-        '    New PointF(halfWidth, halfHeight),
-        '    New PointF(-halfWidth, halfHeight)
-        '}
-
-        'Dim transformedPoints As PointF() = New PointF(RectPoints.Length - 1) {}
-
-        'For i As Integer = 0 To RectPoints.Length - 1
-
-        '    Dim x As Single = RectPoints(i).X * Cos(angle) - RectPoints(i).Y * Sin(angle)
-        '    Dim y As Single = RectPoints(i).X * Sin(angle) + RectPoints(i).Y * Cos(angle)
-
-        '    transformedPoints(i) = New PointF(x + Me.ClientSize.Width / 2, y + Me.ClientSize.Height / 2)
-
-        'Next
-
-        g.SmoothingMode = Drawing2D.SmoothingMode.HighQuality
-
-        g.FillPolygon(Brushes.Black, transformedPoints)
 
     End Sub
 
